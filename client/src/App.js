@@ -1,10 +1,22 @@
+import React, { useState } from 'react';
 import './App.css';
-import {Home} from './pages'
+import { Switch, Route } from "react-router-dom";
+import { Login, Home } from './pages';
 
 function App() {
+
+
   return (
     <>
-     <Home/>
+      <Switch>
+        <Route exact path="/">
+          <Login/>
+        </Route>
+        <Route exact path="/dahsboard">
+          <Home />
+        </Route>
+      </Switch>
+
     </>
   );
 }
