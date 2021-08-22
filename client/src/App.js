@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Switch, Route } from "react-router-dom";
-import { Login, Home, Itenerary } from './pages';
+import { Login, Home, Itenerary, Summary } from './pages';
 
 function App() {
 
@@ -17,6 +17,9 @@ function App() {
         </Route>
         <Route exact path="/itenerary">
           <Itenerary />
+        </Route>
+        <Route exact path="/summary">
+          <Summary/>
         </Route>
       </Switch>
 

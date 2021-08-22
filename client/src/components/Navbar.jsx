@@ -18,9 +18,6 @@ export default function Navbar() {
           Destination
         </button>
         <button className="btn  btn-ghost">
-          Favorite
-        </button>
-        <button className="btn  btn-ghost">
           Summary
         </button>
       </div>
