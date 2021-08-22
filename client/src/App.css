@@ -16,3 +16,43 @@
   font-size: 4rem;
   margin-bottom: 40px;
 }
+.movies_row {
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+
+.movies_row::-webkit-scrollbar {
+  display: none;
+}
+
+.movie_row {
+  max-height: 230px;
+  object-fit: contain;
+  /* width: 200px; */
+  border-radius: 20px;
+  transition: transform 450ms;
+}
+
+.movie_row:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.example::-webkit-scrollbar {
+  display: none;
+}
+
+.slickk-arrow {
+  color: black;
+  background-color: red;
+}
+
+.slick-prev {
+  z-index: 100;
+  left: 20px !important;
+}
+
+.slick-next {
+  z-index: 100;
+  right: 20px !important;
+}
