@@ -1,7 +1,14 @@
 import React from 'react'
 import logo2 from '../_assets/logo2.png'
+import { useHistory } from 'react-router-dom'
 
 export default function FloatForm() {
+  const history = useHistory()
+
+  const hanldeSubmit = () => {
+    history.push('/itenerary')
+  }
+
   return (
     <div>
       <div className="absolute top-2/3 w-4/6  z-10">
@@ -46,7 +53,7 @@ export default function FloatForm() {
               </div>
             </div>
             <div className="relative flex-1">
-              <button className="bg-blue-900 text-white text-sm rounded px-6 py-2.5 absolute z-20">SUBMIT</button>
+              <button onClick={hanldeSubmit} className="bg-blue-900 text-white text-sm rounded px-6 py-2.5 absolute z-20">SUBMIT</button>
             </div>
           </div>
           <div style={{position: 'absolute', top: '0', right: '0px', overflow:'hidden', width:'300px', height:'300px'}}>
