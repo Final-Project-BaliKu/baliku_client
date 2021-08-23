@@ -7,7 +7,7 @@ export default function Login() {
   const history = useHistory();
 
   const enter = () => {
-    localStorage.setItem('access_token','yes');
+    // localStorage.setItem('access_token','yes');
     history.push("/dahsboard");
   }
 

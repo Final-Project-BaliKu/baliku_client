@@ -27,6 +27,11 @@ export default function Navbar() {
             Summary
           </button>
         </Link>
+        <Link to="/">
+          <button className="btn  btn-ghost">
+            Logout
+          </button>
+        </Link>
       </div>
     </div>
   )
