@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Switch, Route } from "react-router-dom";
-import { Login, Home, Itenerary, Summary, AllDestinations } from './pages';
+import { Login, Home, Itenerary, Summary, AllDestinations, DetailTrip, Checkout } from './pages';
 
 function App() {
-
 
   return (
     <>
@@ -23,6 +22,12 @@ function App() {
         </Route>
         <Route exact path="/AllDestinations">
           <AllDestinations/>
+        </Route>
+        <Route exact path="/trip">
+          <DetailTrip/>
+        </Route>
+        <Route exact path="/checkout">
+          <Checkout/>
         </Route>
       </Switch>
 

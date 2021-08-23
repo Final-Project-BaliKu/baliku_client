@@ -7,7 +7,7 @@ export default function Navbar() {
       <div className="flex-none px-2 mx-2">
         <Link to="/dahsboard">
           <span className="text-lg font-bold">
-            BALIKU
+            BALIKU.COM
           </span>
         </Link>
       </div>

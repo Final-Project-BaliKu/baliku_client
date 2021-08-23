@@ -5,7 +5,7 @@ export default function AllDestinations() {
   return (
     <div className="bg-blue-900 relative overflow-hidden">
       <Navbar/>
-      <section class="text-gray-600 body-font">
+      <section class="text-gray-600 body-font px-20">
         <div class="container px-5 py-24 mx-auto">
           <div class="flex flex-col text-center w-full mb-20">
             <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Master Cleanse Reliac Heirloom</h1>

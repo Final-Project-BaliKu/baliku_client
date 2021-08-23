@@ -58,7 +58,7 @@ export default class SimpleSlider extends React.Component {
            </div>
 
          </div>
-         <p className="font-bold mb-4">Drag and Drop image to the day box</p>
+         <p className="font-bold mb-4">Drag and Drop image to the day box and see your summary</p>
          <div className="boxes">
           <Slider {...settings}>
               <Box targetKey="box" name="Day 1" />
