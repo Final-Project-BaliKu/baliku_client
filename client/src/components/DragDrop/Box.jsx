@@ -3,7 +3,8 @@ import DropTarget from "./DropTarget.jsx";
 import BoxItem from "./BoxItem";
 import shortid from "shortid";
 import { PlansContext } from "../../context/plansContext";
-
+// import { INSERT_PLANS, ALL_ITINERARY } from "../../graphql/index.js";
+// import { useMutation, useApolloClient, useQuery } from "@apollo/client";
 // import { DragDropContainer, DropTarget } from '../../src/index.jsx';
 // import DragDropContainer from '../DragDropContainer.jsx'
 
@@ -14,6 +15,7 @@ export default class Box extends React.Component {
             items: [],
         };
     }
+
     handleDrop = (e) => {
         let items = this.state.items.slice();
         items.push({
