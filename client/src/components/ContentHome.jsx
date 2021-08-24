@@ -1,6 +1,7 @@
 import React from 'react'
 
-export default function ContentHome() {
+export default function ContentHome(props) {
+  console.log(props.attraction)
   return (
     <>
       <section class="text-gray-600 body-font">
@@ -12,24 +13,24 @@ export default function ContentHome() {
           <div class="flex flex-wrap md:-m-2 -m-1">
             <div class="flex flex-wrap w-1/2">
               <div class="md:p-2 p-1 w-1/2 rounded-lg">
-                <img alt="gallery" class="w-full object-cover h-full object-center block rounded-lg" src="https://dummyimage.com/500x300" />
+                <img alt="gallery" class="w-full object-cover h-56 object-center block rounded-lg" src={props.attraction[0].image} />
               </div>
               <div class="md:p-2 p-1 w-1/2 rounded-lg">
-                <img alt="gallery" class="w-full object-cover h-full object-center block rounded-lg" src="https://dummyimage.com/501x301" />
+                <img alt="gallery" class="w-full object-cover h-56 object-center block rounded-lg" src={props.attraction[1].image} />
               </div>
               <div class="md:p-2 p-1 w-full rounded-lg">
-                <img alt="gallery" class="w-full h-full object-cover object-center block rounded-lg" src="https://dummyimage.com/600x360" />
+                <img alt="gallery" class="w-full object-cover h-96 object-center block rounded-lg" src={props.attraction[2].image} />
               </div>
             </div>
             <div class="flex flex-wrap w-1/2 ">
               <div class="md:p-2 p-1 w-full rounded-lg">
-                <img alt="gallery" class="w-full h-full object-cover object-center block rounded-lg" src="https://dummyimage.com/601x361" />
+                <img alt="gallery" class="w-full object-cover h-96 object-center block rounded-lg" src={props.attraction[3].image} />
               </div>
               <div class="md:p-2 p-1 w-1/2 rounded-lg">
-                <img alt="gallery" class="w-full object-cover h-full object-center block rounded-lg" src="https://dummyimage.com/502x302" />
+                <img alt="gallery" class="w-full object-cover h-56 object-center block rounded-lg" src={props.attraction[4].image} />
               </div>
               <div class="md:p-2 p-1 w-1/2 rounded-lg">
-                <img alt="gallery" class="w-full object-cover h-full object-center block rounded-lg" src="https://dummyimage.com/503x303" />
+                <img alt="gallery" class="w-full object-cover h-56 object-center block rounded-lg" src={props.attraction[5].image} />
               </div>
             </div>
           </div>

@@ -22,11 +22,6 @@ export default function Navbar() {
             Destination
           </button>
         </Link>
-        <Link to="summary">
-          <button className="btn  btn-ghost">
-            Summary
-          </button>
-        </Link>
         <Link to="/">
           <button className="btn  btn-ghost">
             Logout

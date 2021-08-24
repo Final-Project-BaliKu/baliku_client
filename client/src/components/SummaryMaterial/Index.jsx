@@ -2,9 +2,10 @@ import React from 'react';
 import StepSummary from '../Step2.jsx';
 import Modal from '../Modal.jsx';
 import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 
-export default function Index() {
+export default function Index(props) {
   const history = useHistory()
 
   const cancel = () => {
@@ -12,7 +13,27 @@ export default function Index() {
   }
 
   const confirm = () => {
-    history.push('/checkout')
+    
+    
+
+    axios({
+      method: 'PATCH',
+      url: 'www.tes.com',
+      headers: {
+        access_point: 'aaa'
+      },
+      data : props.plan
+    })
+      .then(({data}) => {
+        history.push('/checkout')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+
+    
+    
   }
 
   const gotoMaps = (e) => {

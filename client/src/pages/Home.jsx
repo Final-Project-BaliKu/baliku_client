@@ -1,10 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import FormItenerary from '../components/FloatForm.jsx';
 import Navbar from '../components/Navbar.jsx';
 import ContentHome from '../components/ContentHome.jsx';
 import vid from '../_assets/vid.mp4';
+import axios from 'axios';
 
 export default function Home() {
+  const [attraction, setAttraction] = useState('');
+   const getAllAttraction = async () =>{
+    await axios({
+        method: 'GET',
+        url: 'https://travel-advisor.p.rapidapi.com/attractions/list',
+        params: {
+            location_id: '294226',
+            currency: 'USD',
+            lang: 'en_US',
+            lunit: 'km',
+            sort: 'ranking',
+            limit: '10'
+        },
+        headers: {
+            'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
+            'x-rapidapi-key': '6ce005067cmsh3fcf85adc75f757p1c39fcjsn3c484155bae8'
+        }
+    })
+    .then(async ({data}) =>{
+        data = data.data.filter(data =>{
+          return data.photo !== undefined 
+        })
+        console.log(data);
+        data = data.map(data =>{
+          return {name: data.name, locationId: data.location_id, location: data.address, latitude:data.latitude, longitude:data.longitude, rating:data.rating, description:data.description, image: data.photo.images.medium.url, ranking: data.ranking, ranking_position: data.ranking_position}
+        })
+        console.log(data);
+        await setAttraction(data);
+    })
+  }
+  useEffect( () =>{
+    getAllAttraction()
+  },[])
+  
   return (
     <div>
       <div className=' h-screen flex relative overflow-hidden'>
@@ -31,7 +66,10 @@ export default function Home() {
         </div>
       </div>
       <div className="px-20">
-        <ContentHome/>
+        {attraction? <ContentHome 
+        attraction={attraction}
+          />: null}
+        
       </div>
     </div>
   )
