@@ -9,12 +9,22 @@ import DropTarget from './DropTarget.jsx';
 */
 
 export default class Boxable extends React.Component {
-    render() {
+  render() {
       return (
         <div className="boxable_component" style={{display: 'inline-block'}}>
           <DragDropContainer
             targetKey={this.props.targetKey}
-            dragData={{label: this.props.label}}
+            dragData={{
+              label: this.props.label,
+              locationId: this.props.locationId,
+              location: this.props.location,
+              latitude: this.props.latitude,
+              longitude: this.props.longitude,
+              rating: this.props.rating,
+              description: this.props.description,
+              image: this.props.image,
+              ranking: this.props.ranking,
+            }}
             customDragElement={this.props.customDragElement}
             // onDragStart={()=>(console.log('start'))}
             // onDrag={()=>(console.log('dragging'))}
