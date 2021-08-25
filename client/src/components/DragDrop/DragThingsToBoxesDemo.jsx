@@ -94,7 +94,7 @@ export default function SimpleSlide(props) {
                     locationId={data.locationId} 
                     location={data.location}
                     latitude={data.latitude}
-                    longitude={data.longitude}
+                    longitude={data.longitude}  
                     rating={data.rating}
                     description={data.description}
                     image={data.image} 
