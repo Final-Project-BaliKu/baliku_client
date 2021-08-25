@@ -17,7 +17,7 @@ export default function AllDestinations() {
       },
       headers: {
         'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
-        'x-rapidapi-key': '6ce005067cmsh3fcf85adc75f757p1c39fcjsn3c484155bae8'
+        'x-rapidapi-key': 'a89ab4b177msh328f0a2ea32e265p1bab2ajsn9a2a4a563006'
       }
     })
       .then(async ({ data }) => {
@@ -38,7 +38,7 @@ export default function AllDestinations() {
 
   return (
 
-    <div className="bg-blue-900 relative overflow-hidden">
+    <div className="bg-destination relative overflow-hidden">
       <Navbar />
       <section className="text-gray-600 body-font px-20">
         <div className="container px-5 py-24 mx-auto">
@@ -50,7 +50,7 @@ export default function AllDestinations() {
             {attraction ?
               attraction.map(data => {
                 return (
-                  <div className="lg:w-1/3 sm:w-1/2 p-4">
+                  <div className="lg:w-1/3 sm:w-1/2 p-4 shadow-xl">
                     <div className="flex relative">
                       <img alt="gallery" className="rounded-md absolute inset-0 w-full h-full object-cover object-center" src={data.image} />
                       <div className="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white  opacity-0 bg-opacity-0 hover:opacity-100 hover:bg-opacity-75 ">

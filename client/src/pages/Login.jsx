@@ -8,9 +8,14 @@ export default function Login() {
 
   const enter = () => {
     // localStorage.setItem('access_token','yes');
-    history.push("/dahsboard");
+    history.push("/");
   }
 
+  const register = (e) => {
+    e.preventDefault()
+
+    history.push('/register')
+  }
 
 
   return (
@@ -42,17 +47,11 @@ export default function Login() {
                   </label>
                   <input className="w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-blue-400" type="" placeholder="Enter your password" />
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <input name="remember_me" type="checkbox" className="h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded" />
-                    <label className="ml-2 block text-sm text-gray-800">
-                      Remember me
-                    </label>
-                  </div>
-                  <div className="text-sm">
-                    <a href="/home" className="text-blue-900 hover:text-blue-500">
-                      Forgot your password?
-                    </a>
+                <div>
+                  <div className="text-sm text-center">
+                    <span onClick={(e)=> register(e)} className="cursor text-blue-900 hover:text-blue-500">
+                    don't have an account ? register here
+                    </span>
                   </div>
                 </div>
                 <div>
@@ -64,13 +63,13 @@ export default function Login() {
               <div className="pt-5 text-center text-gray-400 text-xs">
                 <span>
                   Copyright © 2021-2022
-                  <a href="https://codepen.io/uidesignhub" rel=""  title="Ajimon" className="text-blue hover:text-blue-500 ">BALIKU</a></span>
+                  <a href="https://codepen.io/uidesignhub" rel="" title="Ajimon" className="text-blue hover:text-blue-500 ">BALIKU</a></span>
               </div>
               <div className="absolute -left-0.5 opacity-70 mt-1">
-                <img src={patternBali} alt="" className="" width="50%"/>
+                <img src={patternBali} alt="" className="" width="50%" />
               </div>
               <div className="absolute left-1/2 opacity-70 mt-1">
-                <img src={patternBali} alt="" className="" width="100%"/>
+                <img src={patternBali} alt="" className="" width="100%" />
               </div>
             </div>
           </div>

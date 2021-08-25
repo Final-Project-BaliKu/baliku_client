@@ -1,19 +1,29 @@
 import React, {useState} from 'react';
 import DragBox from '../components/DragDrop/DragThingsToBoxesDemo.jsx';
 import Navbar from '../components/Navbar.jsx'
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 
 export default function Itenerary() {
+  let [cost, setCost] = useState(0)
   const history = useHistory()
+  let loc = useLocation()
+
+  let nyoba = (data) => {
+    setCost(cost += data)
+  }
 
   return (
     <div className="h-full bg-blue-900 relative overflow-hidden pr-10 ">
       <Navbar/>
+      <div className="bg-white rounded shadow-2xl  h-32 w-56 fixed ml-40 border-8 border-green-500" style={{top:400}}>
+          <p className="text-lg font-bold text-center py-2">Total costs</p>
+          <h1 className="text-center mt-2 text-4xl">$ {cost}</h1>
+      </div>
       <section className="text-gray-600 body-font py-5 ml-60 ">
         <div className="container px-10 py-16 mx-auto ">
           <div className="shadow-xl  mt-auto mb-auto lg:w-full pl-40 sm:w-2/3 content-start sm:pr-10 bg-white rounded-md p-10">
-            <DragBox/>
+            <DragBox countBox={loc.state} getCost={(data) => nyoba(data)} />
             <p className="mb-5">make sure you has completed all trip</p>
             <button className="btn btn-black rounded text-right" onClick={()=> history.push('/summary') }>CONTINUE</button>
           </div>

@@ -98,11 +98,26 @@
 path.leaflet-interactive.animate {
   stroke-dasharray: 1920;
   stroke-dashoffset: 1920;
-  animation: dash 5s linear 2s forwards;
+  animation: dash 5s linear 0s forwards;
 }
 
 @keyframes dash {
   to {
     stroke-dashoffset: 0;
   }
+}
+
+.bgMytrip {
+  background: url('https://images.unsplash.com/photo-1536152470836-b943b246224c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1578&q=80');
+  background-size: cover;
+}
+
+.bg-destination {
+  background: url('https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1575&q=80');
+  /* background-size: cover; */
+}
+
+.bg-register {
+  background: url('https://images.unsplash.com/photo-1513415756790-2ac1db1297d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1567&q=80');
+  background-size: cover;
 }

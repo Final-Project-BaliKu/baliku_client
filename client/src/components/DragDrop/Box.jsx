@@ -15,6 +15,10 @@ export default class Box extends React.Component {
       items: []
     };
   }
+
+  
+  
+
   handleDrop = (e) => {
     let items = this.state.items.slice();
     items.push({
@@ -28,6 +32,7 @@ export default class Box extends React.Component {
       description: e.dragData.description,
       image: e.dragData.image,
       ranking: e.dragData.ranking,
+      cost: e.dragData.cost,
       day: this.props.name,
     });
     this.setState({ items: items });
@@ -90,6 +95,7 @@ export default class Box extends React.Component {
   }
 
   render() {
+    
     return (
       <PlansContext.Consumer>
         {

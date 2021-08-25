@@ -1,13 +1,14 @@
 import { MapContainer, TileLayer } from 'react-leaflet'
 import L from 'leaflet'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import "leaflet-routing-machine";
 import iconStart from '../_assets/marker.png'
 import iconEnd from '../_assets/markerFinish.png'
 import { createControlComponent } from '@react-leaflet/core'
 import { sortByDistance } from '../helper/helper'
 
-export default function Maps(){
+export default function Maps(props){
+    console.log(props.location[0].latitude, 'ini dari maps')
     const [latitude, setlatitude] = useState([]);
     const [longtitude, setLongtitude] = useState([]);
     const [waypoint, setWaypoint] = useState([
@@ -17,13 +18,18 @@ export default function Maps(){
       {name:'wisata', lat: -8.509518, lng: 115.248919},{name:'wisata', lat: -8.615999, lng: 115.240000}
     ],);
 
-    async function  addWaypoint(e){
-        e.preventDefault();
-        let newWaypoint = [...waypoint];
-        newWaypoint = [...newWaypoint, {name:'wisata', lat: latitude, lng: longtitude}];
-        newWaypoint = sortByDistance(newWaypoint);
-        await setWaypoint(newWaypoint);
-        console.log(waypoint);
+    useEffect(() => {
+        let tmp = []
+        props.location.map((el) => {
+            tmp.push({name:el.name, lat: el.latitude, lng: el.longitude})
+        })
+        // tmp = sortByDistance(tmp)
+        setWaypoint(tmp)
+    }, [])
+
+     async function optimize(){
+         await setWaypoint([])    
+         await setWaypoint(sortByDistance(waypoint))
     }
 
     const createRoutineMachineLayer = (props) => {
@@ -76,14 +82,14 @@ export default function Maps(){
     const RoutingMachine = createControlComponent(createRoutineMachineLayer);
     return(
         <>
-           
-            <MapContainer center={[-8.739184, 115.171127]} zoom={12} scrollWheelZoom={false} style={{height:'500px'}}>
+            <MapContainer center={[-8.739184, 115.171127]} zoom={12} scrollWheelZoom={false} style={{height:'500px', position:'relative', zIndex:10}}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 <RoutingMachine/>
             </MapContainer>
+            <button className="btn btn-sm bg-blue-900 rounded mx-5" type="button" onClick={optimize} style={{position:'absolute', right:0, bottom:20, zIndex:20}}>Optimize Path</button>
         </>
         
     )

@@ -9,11 +9,21 @@ import "slick-carousel/slick/slick-theme.css";
 import axios from 'axios';
 
 
-export default function SimpleSlide() {
+export default function SimpleSlide(props) {
   const [attraction, setAttraction] = useState('');
   const [loading, setLoading] = useState('');
+  const [countDays, setCountDays] = useState([])
+  console.log(props.countBox,'ini lemparan props')
 
-  let countBox = [1,1,1,1,1]
+  
+  useEffect(() => {
+    let tmp = []
+    for (let i = 0; i < props.countBox; i++) {
+      tmp.push('*')
+    }
+    setCountDays(tmp)
+
+  }, [])
   
   const getAllAttraction = async () => {
 
@@ -34,7 +44,7 @@ export default function SimpleSlide() {
     })
       .then(async ({ data }) => {
         data = data.data.filter(data => {
-          return data.photo !== undefined 
+          return data.photo !== undefined && data.offer_group
         })
         data = data.map(data => {
           return { 
@@ -46,7 +56,10 @@ export default function SimpleSlide() {
             rating: data.rating, 
             description: data.description, 
             image: data.photo.images.medium.url, 
-            ranking: data.ranking }
+            ranking: data.ranking,
+            // cost: 10 
+            cost: data.offer_group.lowest_price.substr(1)
+          }
         })
         await setAttraction(data);
       })
@@ -59,7 +72,7 @@ export default function SimpleSlide() {
     className: "center",
     infinite: true,
     centerPadding: "60px",
-    slidesToShow: countBox.length > 3 ? 3 : countBox.length,
+    slidesToShow: countDays.length > 3 ? 3 : countDays.length,
     swipeToSlide: true,
   };
   return (
@@ -86,6 +99,8 @@ export default function SimpleSlide() {
                     description={data.description}
                     image={data.image} 
                     ranking={data.ranking} 
+                    cost={+data.cost}
+                    calculatedCost={props.getCost}
                     />
                   </div>
                   <div className=" w-full px-3">
@@ -103,11 +118,14 @@ export default function SimpleSlide() {
           {/* box penampung dan props nya */}
           <Slider {...settings}>
             {
-              countBox.map((el, idx) => (
+              countDays ? 
+              countDays.map((el, idx) => (
                 <>
-                  <Box targetKey="box" name={`day ${idx + 1}`} description="TESSS"/> 
+                  <Box targetKey="box" name={`Day ${idx + 1}`} description="TESSS"/> 
                 </>
               ))
+              :
+              null
             }
           </Slider>
         </div>
