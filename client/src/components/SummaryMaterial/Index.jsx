@@ -2,7 +2,7 @@ import React from "react";
 import StepSummary from "../Step2.jsx";
 import Modal from "../Modal.jsx";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import { INSERT_PLANS, ALL_ITINERARY } from "../../graphql/index.js";
 import { useMutation, useApolloClient, useQuery } from "@apollo/client";
 
@@ -14,9 +14,28 @@ export default function Index(props) {
 
     const [insertPlans] = useMutation(INSERT_PLANS, {
         onCompleted(data) {
-            console.log(data);
+            console.log(data, 456);
+
+            const { itineraries } = client.readQuery({ query: ALL_ITINERARY });
+            itineraries.forEach((el) => {
+                if (el._id === localStorage._id) {
+                    el = data.insertPlans;
+                }
+            });
+
+            console.log(itineraries, 123);
+
+            client.writeQuery({
+                query: ALL_ITINERARY,
+                data: {
+                    itineraries: itineraries,
+                },
+            });
+            localStorage.removeItem("_id");
+            history.push(`/checkout`);
         },
         onError(err) {
+            console.log("masuk error");
             console.log(err);
         },
     });
@@ -27,31 +46,21 @@ export default function Index(props) {
 
     const confirm = (e) => {
         e.preventDefault();
-        //     axios({
-        //         method: "PATCH",
-        //         url: "www.tes.com",
-        //         headers: {
-        //             access_point: "aaa",
-        //         },
-        //         data: props.plan,
-        //     })
-        //         .then(({ data }) => {
-        //             history.push("/checkout");
-        //         })
-        //         .catch((err) => {
-        //             console.log(err);
-        //         });
 
-        console.log(props.plan);
+        console.log(JSON.stringify(props.plan), 123);
+        console.log(localStorage._id);
 
         insertPlans({
-            variables: props.plan,
+            variables: {
+                _id: localStorage._id,
+                plans: JSON.stringify(props.plan),
+            },
         });
     };
 
-    const gotoMaps = (e) => {
+    const gotoMaps = (e, el) => {
         e.preventDefault();
-        history.push("/trip");
+        history.push("/trip", el);
     };
 
     return (
@@ -59,20 +68,18 @@ export default function Index(props) {
             <StepSummary />
             <div className="mt-10 max-h-72 overflow-scroll example">
                 <p>you can check your plan with click the card </p>
-                <span class="cursor" onClick={(e) => gotoMaps(e)}>
-                    <div className="w-full h-3/6 p-10 rounded my-2 shadow-xl relative overflow-hidden" style={{ background: "#f7f7f7" }}>
-                        <h2 className="text-xl font-bold">DAY 1</h2>
-                        <img src="https://www.kindpng.com/picc/m/248-2488335_liburanbali-header-bali-cartoon-png-transparent-png.png" alt="" className="absolute -right-24 -top-20" width="50%" />
-                    </div>
-                    <div className="w-full h-3/6 p-10 rounded my-2 shadow-xl relative overflow-hidden" style={{ background: "#f7f7f7" }}>
-                        <h2 className="text-xl font-bold">DAY 2</h2>
-                        <img src="https://www.kindpng.com/picc/m/248-2488335_liburanbali-header-bali-cartoon-png-transparent-png.png" alt="" className="absolute -right-24 -top-20" width="50%" />
-                    </div>
-                    <div className="w-full h-3/6 p-10 rounded my-2 shadow-xl relative overflow-hidden" style={{ background: "#f7f7f7" }}>
-                        <h2 className="text-xl font-bold">DAY 3</h2>
-                        <img src="https://www.kindpng.com/picc/m/248-2488335_liburanbali-header-bali-cartoon-png-transparent-png.png" alt="" className="absolute -right-24 -top-20" width="50%" />
-                    </div>
-                </span>
+                {props.plan
+                    ? props.plan.map((el, idx) => (
+                          <>
+                              <span class="cursor" onClick={(e) => gotoMaps(e, el)}>
+                                  <div key={idx} className="w-full h-3/6 p-10 rounded my-2 shadow-xl relative overflow-hidden" style={{ background: "#f7f7f7" }}>
+                                      <h2 className="text-xl font-bold">{el.day}</h2>
+                                      <img src="https://www.kindpng.com/picc/m/248-2488335_liburanbali-header-bali-cartoon-png-transparent-png.png" alt="" className="absolute -right-24 -top-20" width="50%" />
+                                  </div>
+                              </span>
+                          </>
+                      ))
+                    : null}
             </div>
             <button className="btn btn-sm bg-blue-900  rounded mt-10" onClick={(e) => confirm(e)}>
                 CONFIRM

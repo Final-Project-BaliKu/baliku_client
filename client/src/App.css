@@ -1,108 +1,123 @@
 .loginBackgroundPage {
-  background: url('https://images.unsplash.com/photo-1604999333679-b86d54738315?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1525&q=80');
-  background-size: cover;
+    background: url("https://images.unsplash.com/photo-1604999333679-b86d54738315?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1525&q=80");
+    background-size: cover;
 }
 
 #myVideo {
-  position: relative;
-  left: -50px;
-  bottom: 0;
-  top: -160px;
-  min-width: 125%;
-  min-height: 100%;
+    position: relative;
+    left: -50px;
+    bottom: 0;
+    top: -160px;
+    min-width: 125%;
+    min-height: 100%;
 }
 .mainTitle {
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 4rem;
-  margin-bottom: 40px;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 4rem;
+    margin-bottom: 40px;
 }
 .movies_row {
-  overflow-y: hidden;
-  overflow-x: scroll;
+    overflow-y: hidden;
+    overflow-x: scroll;
 }
 
 .movies_row::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .movie_row {
-  max-height: 230px;
-  object-fit: contain;
-  /* width: 200px; */
-  border-radius: 20px;
-  transition: transform 450ms;
+    max-height: 230px;
+    object-fit: contain;
+    /* width: 200px; */
+    border-radius: 20px;
+    transition: transform 450ms;
 }
 
 .movie_row:hover {
-  transform: scale(1.1);
-  opacity: 1;
+    transform: scale(1.1);
+    opacity: 1;
 }
 
 .example::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .slickk-arrow {
-  color: black;
-  background-color: red;
+    color: black;
+    background-color: red;
 }
 
 .slick-prev {
-  z-index: 100;
-  left: 20px !important;
+    z-index: 100;
+    left: 20px !important;
 }
 
 .slick-next {
-  z-index: 100;
-  right: 20px !important;
+    z-index: 100;
+    right: 20px !important;
 }
 
 .cursor {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .leaflet-container {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 #map {
-  width: 100vw;
-  height: 100vh;
+    width: 100vw;
+    height: 100vh;
 }
 
 .startmarker {
-  font-size: 50px;
-  font-weight: bold;
-  padding: 20px;
-  border-radius: 50%;
-  background-color: blue;
+    font-size: 50px;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 50%;
+    background-color: blue;
 }
 
 .endmarker {
-  font-size: 50px;
-  font-weight: bold;
-  padding: 20px;
-  border-radius: 50%;
-  background-color: rgb(25, 34, 21);
+    font-size: 50px;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 50%;
+    background-color: rgb(25, 34, 21);
 }
 
 .middlemarker {
-  font-size: 50px;
-  font-weight: bold;
-  padding: 20px;
-  border-radius: 50%;
-  background-color: red;
+    font-size: 50px;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 50%;
+    background-color: red;
 }
 
 path.leaflet-interactive.animate {
-  stroke-dasharray: 1920;
-  stroke-dashoffset: 1920;
-  animation: dash 5s linear 2s forwards;
+    stroke-dasharray: 1920;
+    stroke-dashoffset: 1920;
+    animation: dash 5s linear 0s forwards;
 }
 
 @keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.bgMytrip {
+    background: url("https://images.unsplash.com/photo-1536152470836-b943b246224c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1578&q=80");
+    background-size: cover;
+}
+
+.bg-destination {
+    background: url("https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1575&q=80");
+    /* background-size: cover; */
+}
+
+.bg-register {
+    background: url("https://images.unsplash.com/photo-1513415756790-2ac1db1297d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1567&q=80");
+    background-size: cover;
 }

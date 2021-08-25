@@ -39,9 +39,10 @@ export default function SimpleSlide(props) {
             },
         }).then(async ({ data }) => {
             data = data.data.filter((data) => {
-                return data.photo !== undefined;
+                return data.photo !== undefined && data.offer_group;
             });
             data = data.map((data) => {
+                // console.log(data.offer_group);
                 return {
                     name: data.name,
                     locationId: data.location_id,
@@ -52,6 +53,7 @@ export default function SimpleSlide(props) {
                     description: data.description,
                     image: data.photo.images.medium.url,
                     ranking: data.ranking,
+                    price: data.offer_group.lowest_price.substr(1),
                 };
             });
             await setAttraction(data);
@@ -90,6 +92,8 @@ export default function SimpleSlide(props) {
                                                   description={data.description}
                                                   image={data.image}
                                                   ranking={data.ranking}
+                                                  cost={+data.price}
+                                                  calculatedCost={props.getCost}
                                               />
                                           </div>
                                           <div className=" w-full px-3">
@@ -110,7 +114,7 @@ export default function SimpleSlide(props) {
                         {countDays
                             ? countDays.map((el, idx) => (
                                   <>
-                                      <Box targetKey="box" name={`day ${idx + 1}`} description="TESSS" />
+                                      <Box targetKey="box" name={`Day ${idx + 1}`} description="TESSS" />
                                   </>
                               ))
                             : null}

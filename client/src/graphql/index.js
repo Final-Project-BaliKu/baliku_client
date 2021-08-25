@@ -17,49 +17,22 @@ export const ALL_ITINERARY = gql`
         itineraries {
             _id
             UserId
+            title
             checkIn
             checkOut
-            plans {
-                day
-                places {
-                    name
-                    locationId
-                    location
-                    latitude
-                    longitude
-                    rating
-                    description
-                    ranking
-                    image
-                    price
-                }
-            }
+            plans
         }
     }
 `;
 
 export const ONE_ITINERARY = gql`
-    mutation GetOneItinerary($_id: ID) {
+    query GetOneItinerary($_id: ID) {
         itinerary(_id: $_id) {
             _id
             UserId
             checkIn
             checkOut
-            plans {
-                day
-                places {
-                    name
-                    locationId
-                    location
-                    latitude
-                    longitude
-                    rating
-                    description
-                    ranking
-                    image
-                    price
-                }
-            }
+            plans
         }
     }
 `;
@@ -93,27 +66,42 @@ export const POST_ITINERARY = gql`
     }
 `;
 
+// export const INSERT_PLANS = gql`
+//     mutation InsertPlans($_id: ID, $name: String, $locationId: String, $location: String, $latitude: String, $longitude: String, $rating: Float, $description: String, $image: String, $ranking: String, $day: String, $price: Float) {
+//         insertPlans(_id: $_id, name: $name, locationId: $locationId, location: $location, latitude: $latitude, longitude: $longitude, rating: $rating, description: $description, image: $image, ranking: $ranking, day: $day, price: $price) {
+//             _id
+//             UserId
+//             title
+//             checkIn
+//             checkOut
+//             plans {
+//                 day
+//                 places {
+//                     name
+//                     locationId
+//                     location
+//                     latitude
+//                     longitude
+//                     rating
+//                     description
+//                     image
+//                     price
+//                     ranking
+//                 }
+//             }
+//         }
+//     }
+// `;
+
 export const INSERT_PLANS = gql`
-    mutation InsertPlans($name: String, $locationId: String, $location: String, $latitude: String, $longitude: String, $rating: Float, $description: String, $image: String, $rating: Float, $day: String, $price: Float) {
-        insertPlans(name: $name, locationId: $locationId, location: $location, latitude: $latitude, longitude: $longitude, rating: $rating, description: $description, image: $image, rating: $rating, day: $day, price: $price) {
+    mutation InsertPlans($_id: ID, $plans: String) {
+        insertPlans(_id: $_id, plans: $plans) {
             _id
+            UserId
             title
             checkIn
             checkOut
-            plans {
-                day
-                places {
-                    name
-                    locationId
-                    location
-                    latitude
-                    longitude
-                    rating
-                    description
-                    image
-                    price
-                }
-            }
+            plans
         }
     }
 `;

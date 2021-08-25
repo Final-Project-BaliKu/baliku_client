@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { PlansProvider } from "./context/plansContext";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import { Login, Home, Itenerary, Summary, AllDestinations, DetailTrip, Checkout, Register } from "./pages";
+import { Login, Home, Itenerary, Summary, AllDestinations, DetailTrip, Checkout, Register, MyTrip, DetailPlaned } from "./pages";
 
 import { InformationUserProvider } from "./context/informationContext";
 
@@ -11,13 +11,13 @@ function App() {
         <>
             <PlansProvider>
                 <Switch>
-                    <Route exact path="/">
+                    <Route exact path="/login">
                         <Login />
                     </Route>
-                    <Route exact path="/dashboard">
+                    <Route exact path="/">
                         <Home />
                     </Route>
-                    <Route exact path="/itinerary/:id">
+                    <Route exact path="/itinerary">
                         <Itenerary />
                     </Route>
                     <Route exact path="/summary">
@@ -34,6 +34,12 @@ function App() {
                     </Route>
                     <Route exact path="/register">
                         <Register />
+                    </Route>
+                    <Route exact path="/mytrip">
+                        <MyTrip />
+                    </Route>
+                    <Route exact path="/planned/:id">
+                        <DetailPlaned />
                     </Route>
                 </Switch>
             </PlansProvider>

@@ -14,7 +14,7 @@ export default function Login() {
     const [login] = useMutation(USER_LOGIN, {
         onCompleted(data) {
             localStorage.setItem("access_token", data.login.token);
-            history.push("/dashboard");
+            history.push("/");
         },
         onError(err) {
             console.log(err);
@@ -39,6 +39,12 @@ export default function Login() {
         } else {
             console.log("please fill all fields");
         }
+    };
+
+    const register = (e) => {
+        e.preventDefault();
+
+        history.push("/register");
     };
 
     return (
@@ -79,15 +85,11 @@ export default function Login() {
                                         placeholder="Enter your password"
                                     />
                                 </div>
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center">
-                                        <input name="remember_me" type="checkbox" className="h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded" />
-                                        <label className="ml-2 block text-sm text-gray-800">Remember me</label>
-                                    </div>
-                                    <div className="text-sm">
-                                        <a href="/home" className="text-blue-900 hover:text-blue-500">
-                                            Forgot your password?
-                                        </a>
+                                <div>
+                                    <div className="text-sm text-center">
+                                        <span onClick={(e) => register(e)} className="cursor text-blue-900 hover:text-blue-500">
+                                            don't have an account ? register here
+                                        </span>
                                     </div>
                                 </div>
                                 <div>

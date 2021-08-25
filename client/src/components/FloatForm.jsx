@@ -171,18 +171,29 @@ import { useMutation, useApolloClient, useQuery } from "@apollo/client";
 export default function FloatForm() {
     const history = useHistory();
     // const informationItenary = useContext(PlansContext)
-    const [title, setTitle] = useState("");
     const [longTrip, setLongTrip] = useState("");
 
     const client = useApolloClient();
 
+    const { data: allData } = useQuery(ALL_ITINERARY);
+    // console.log(allData, 9786);
+
     const [postItinerary] = useMutation(POST_ITINERARY, {
         onCompleted(data) {
-            console.log(data);
-            const itineraries = client.readQuery({ query: ALL_ITINERARY });
+            console.log(data, 123);
+            const { itineraries } = client.readQuery({ query: ALL_ITINERARY });
             console.log(itineraries);
 
-            history.push(`/itinerary/${data.postItinerary._id}`, longTrip);
+            let newItineraryList = [...itineraries, data.postItinerary];
+
+            client.writeQuery({
+                query: ALL_ITINERARY,
+                data: {
+                    itineraries: newItineraryList,
+                },
+            });
+            localStorage.setItem("_id", data.postItinerary._id);
+            history.push(`/itinerary`, longTrip);
         },
         onError(err) {
             console.log(err);

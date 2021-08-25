@@ -5,7 +5,7 @@ export default function Navbar() {
     return (
         <div className="navbar mb-2   text-neutral-content rounded-lg absolute z-40 w-screen  px-20 mt-4">
             <div className="flex-none px-2 mx-2">
-                <Link to="/dashboard">
+                <Link to="/">
                     <span className="text-lg font-bold">BALIKU.COM</span>
                 </Link>
             </div>
@@ -16,10 +16,10 @@ export default function Navbar() {
                 <Link to="/AllDestinations">
                     <button className="btn  btn-ghost">Destination</button>
                 </Link>
-                <Link to="summary/:id">
-                    <button className="btn  btn-ghost">Summary</button>
+                <Link to="/mytrip">
+                    <button className="btn  btn-ghost">my Trip</button>
                 </Link>
-                <Link to="/">
+                <Link to="/login">
                     <button className="btn  btn-ghost">Logout</button>
                 </Link>
             </div>

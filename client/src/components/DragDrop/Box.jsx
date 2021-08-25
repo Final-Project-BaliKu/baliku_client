@@ -29,6 +29,7 @@ export default class Box extends React.Component {
             description: e.dragData.description,
             image: e.dragData.image,
             ranking: e.dragData.ranking,
+            price: e.dragData.price,
             day: this.props.name,
         });
         this.setState({ items: items });
@@ -70,6 +71,7 @@ export default class Box extends React.Component {
                     description: el.description,
                     image: el.image,
                     ranking: el.ranking,
+                    price: el.price,
                 });
 
                 this.trip = [
