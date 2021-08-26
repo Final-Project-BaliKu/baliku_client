@@ -2,7 +2,6 @@ import React from "react";
 // var shortid = require('shortid');
 // import  {DragDropContainer}  from '../../src/index.jsx';
 import DragDropContainer from "./DragDropContainer.jsx";
-import DropTarget from "./DropTarget.jsx";
 
 /*
    INI HALAMAN HEADER YANG ADA GAMBAR
@@ -24,7 +23,7 @@ export default class Boxable extends React.Component {
                         description: this.props.description,
                         image: this.props.image,
                         ranking: this.props.ranking,
-                        price: this.props.price,
+                        price: this.props.cost,
                     }}
                     customDragElement={this.props.customDragElement}
                     // onDragStart={()=>(console.log('start'))}

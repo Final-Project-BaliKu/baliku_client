@@ -108,8 +108,9 @@ path.leaflet-interactive.animate {
 }
 
 .bgMytrip {
-    background: url("https://images.unsplash.com/photo-1536152470836-b943b246224c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1578&q=80");
+    background: url("https://images.unsplash.com/photo-1620104493388-8747c90fcc2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1534&q=80");
     background-size: cover;
+    background-position-y: -300px;
 }
 
 .bg-destination {
@@ -120,4 +121,18 @@ path.leaflet-interactive.animate {
 .bg-register {
     background: url("https://images.unsplash.com/photo-1513415756790-2ac1db1297d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1567&q=80");
     background-size: cover;
+}
+
+.costumeLogo {
+    width: 6%;
+    position: absolute;
+    top: -6px;
+    left: 80px;
+}
+
+.tes {
+    background-color: rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: none;
 }

@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import FormItenerary from "../components/FloatForm.jsx";
 import Navbar from "../components/Navbar.jsx";
 import ContentHome from "../components/ContentHome.jsx";
 import vid from "../_assets/vid.mp4";
+import { Redirect } from "react-router-dom";
 
 export default function Home() {
+
+    if(!localStorage.access_token){
+        return <Redirect to="/login" />
+    }
+
+
     return (
         <div>
             <div className=" h-screen flex relative overflow-hidden">

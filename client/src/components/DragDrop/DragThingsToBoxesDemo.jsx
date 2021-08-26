@@ -7,16 +7,16 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
+import loadingSign from '../../_assets/loading.gif'
 
 export default function SimpleSlide(props) {
     const [attraction, setAttraction] = useState("");
-    const [loading, setLoading] = useState("");
     const [countDays, setCountDays] = useState([]);
-    console.log(props.countBox, "ini lemparan props");
+    let [loading, setLoading] = useState(false)
 
     useEffect(() => {
         let tmp = [];
-        for (let i = 0; i < props.countBox; i++) {
+        for (let i = 0; i <= props.countBox; i++) {
             tmp.push("*");
         }
         setCountDays(tmp);
@@ -42,7 +42,6 @@ export default function SimpleSlide(props) {
                 return data.photo !== undefined && data.offer_group;
             });
             data = data.map((data) => {
-                // console.log(data.offer_group);
                 return {
                     name: data.name,
                     locationId: data.location_id,
@@ -57,7 +56,10 @@ export default function SimpleSlide(props) {
                 };
             });
             await setAttraction(data);
-        });
+        })
+        .finally((_) => {
+            setLoading(true)
+        })
     };
     useEffect(() => {
         getAllAttraction();
@@ -76,35 +78,44 @@ export default function SimpleSlide(props) {
                 <Step />
                 <div className="things_to_drag ">
                     <div className="overflow-scroll max-h-64 example my-10">
-                        {attraction
-                            ? attraction.map((data) => {
-                                  return (
-                                      <div className="flex p-2 -ml-10  ">
-                                          <div className=" w-6/12   overflow-hidden">
-                                              <Boxable
-                                                  targetKey="box"
-                                                  label={data.name}
-                                                  locationId={data.locationId}
-                                                  location={data.location}
-                                                  latitude={data.latitude}
-                                                  longitude={data.longitude}
-                                                  rating={data.rating}
-                                                  description={data.description}
-                                                  image={data.image}
-                                                  ranking={data.ranking}
-                                                  cost={+data.price}
-                                                  calculatedCost={props.getCost}
-                                              />
-                                          </div>
-                                          <div className=" w-full px-3">
-                                              <h1 className="text-lg  font-bold">{data.name}</h1>
-                                              <p className="mb-3">{data.ranking}</p>
-                                              <p className="text-justify overflow-y-auto text-sm h-28">{data.description || data.location}</p>
-                                          </div>
-                                      </div>
-                                  );
-                              })
-                            : null}
+                        {
+                            !loading ? <img src={loadingSign} alt="loading" className="mx-auto" width="20%" /> : (
+                                <>
+
+                                    {attraction
+                                        ? attraction.map((data, idx) => {
+                                            return (
+                                                <div className="flex p-2 -ml-10" key={idx}>
+                                                    <div className=" w-6/12   overflow-hidden">
+                                                        <Boxable
+                                                            targetKey="box"
+                                                            label={data.name}
+                                                            locationId={data.locationId}
+                                                            location={data.location}
+                                                            latitude={data.latitude}
+                                                            longitude={data.longitude}
+                                                            rating={data.rating}
+                                                            description={data.description}
+                                                            image={data.image}
+                                                            ranking={data.ranking}
+                                                            cost={+data.price}
+                                                            calculatedCost={props.getCost}
+                                                        />
+                                                    </div>
+                                                    <div className=" w-full px-3">
+                                                        <h1 className="text-lg  font-bold">{data.name}</h1>
+                                                        <p className="mb-3">{data.ranking}</p>
+                                                        <p className="font-bold">$ {data.price}</p>
+                                                        <p className="text-justify overflow-y-auto text-sm h-28">{data.description || data.location}</p>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })
+                                        : null}
+
+                                </>
+                            )
+                        }
                     </div>
                 </div>
                 <p className="font-bold mb-4">Drag and Drop image to the day box and see your summary</p>
@@ -113,10 +124,10 @@ export default function SimpleSlide(props) {
                     <Slider {...settings}>
                         {countDays
                             ? countDays.map((el, idx) => (
-                                  <>
-                                      <Box targetKey="box" name={`Day ${idx + 1}`} description="TESSS" />
-                                  </>
-                              ))
+                                <div key={idx}>
+                                    <Box targetKey="box" name={`Day ${idx + 1}`} description="TESSS" />
+                                </div>
+                            ))
                             : null}
                     </Slider>
                 </div>

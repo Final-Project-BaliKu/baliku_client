@@ -23,6 +23,7 @@
     "react-slick": "^0.28.1",
     "shortid": "^2.2.16",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.1.4",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

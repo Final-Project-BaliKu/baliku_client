@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { PlansProvider } from "./context/plansContext";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import { Login, Home, Itenerary, Summary, AllDestinations, DetailTrip, Checkout, Register, MyTrip, DetailPlaned } from "./pages";
 
-import { InformationUserProvider } from "./context/informationContext";
 
 function App() {
     return (

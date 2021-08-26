@@ -3,6 +3,9 @@ import DropTarget from "./DropTarget.jsx";
 import BoxItem from "./BoxItem";
 import shortid from "shortid";
 import { PlansContext } from "../../context/plansContext";
+import Swal from 'sweetalert2'
+
+// import 'sweetalert2/src/sweetalert2.scss'
 // import { INSERT_PLANS, ALL_ITINERARY } from "../../graphql/index.js";
 // import { useMutation, useApolloClient, useQuery } from "@apollo/client";
 // import { DragDropContainer, DropTarget } from '../../src/index.jsx';
@@ -58,7 +61,7 @@ export default class Box extends React.Component {
 
     planBase = (event, planValue) => {
         event.preventDefault();
-
+        Swal.fire('Hello world!')
         this.state.items.map((el) => {
             {
                 this.plan.push({
@@ -86,6 +89,25 @@ export default class Box extends React.Component {
                 planValue.setPlans(planValue.plans.concat(this.trip));
             }
         });
+
+        //alert
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'center',
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'success',
+            title: 'add to your trip successfully'
+          })
+        
     };
 
     render() {
