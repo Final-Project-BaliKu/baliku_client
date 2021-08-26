@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FormItenerary from "../components/FloatForm.jsx";
 import Navbar from "../components/Navbar.jsx";
 import ContentHome from "../components/ContentHome.jsx";
 import vid from "../_assets/vid.mp4";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function Home() {
+    const history = useHistory();
 
-    if(!localStorage.access_token){
-        return <Redirect to="/login" />
-    }
+    // if(!localStorage.access_token){
+    //     return <Redirect to="/login" />
+    // }
 
+    useEffect(() => {
+        if (!localStorage.access_token) {
+            history.push("/login");
+        }
+    }, []);
 
     return (
         <div>

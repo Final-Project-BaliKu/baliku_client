@@ -1,15 +1,22 @@
-import React, { useContext } from "react";
-import { Redirect } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import TicketList from "../components/SummaryMaterial/Ticket.jsx";
 import { PlansContext } from "../context/plansContext";
 
 export default function Checkout() {
     const planValue = useContext(PlansContext);
+    const history = useHistory();
 
-    if(!localStorage.access_token){
-        return <Redirect to="/login" />
-    }
+    // if(!localStorage.access_token){
+    //     return <Redirect to="/login" />
+    // }
+
+    useEffect(() => {
+        if (!localStorage.access_token) {
+            history.push("/login");
+        }
+    });
 
     return (
         <div className="h-screen bg-blue-900 relative overflow-x-hidden pr-10 ">

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { POST_ITINERARY, ALL_ITINERARY } from "../graphql";
 import { useMutation, useApolloClient, useQuery } from "@apollo/client";
 import { PlansContext } from "../context/plansContext";
+import Swal from "sweetalert2";
 
 export default function FloatForm() {
     const history = useHistory();
@@ -33,7 +34,7 @@ export default function FloatForm() {
             history.push(`/itinerary`, longTrip);
         },
         onError(err) {
-            console.log(err);
+            Swal.fire("Please check your connection");
         },
     });
 
@@ -58,14 +59,18 @@ export default function FloatForm() {
 
         planValue.setPlans([]);
 
-        const newItinerary = {
-            title: data.name,
-            checkIn: data.in,
-            checkOut: data.out,
-        };
-        postItinerary({
-            variables: newItinerary,
-        });
+        if (data.name && data.in && data.out) {
+            const newItinerary = {
+                title: data.name,
+                checkIn: data.in,
+                checkOut: data.out,
+            };
+            postItinerary({
+                variables: newItinerary,
+            });
+        } else {
+            Swal.fire("Please fill all fields");
+        }
     };
 
     return (

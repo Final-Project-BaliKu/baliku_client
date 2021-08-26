@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar.jsx";
 import { Redirect, useHistory } from "react-router-dom";
 import { ALL_ITINERARY, DELETE_ITINERARY } from "../graphql/index";
 import { useQuery, useMutation, useApolloClient } from "@apollo/client";
 import Loading from "../_assets/loading.gif";
-import '../components/Coupon/Coupon.css'
-import logo from '../_assets/logo2.png'
-
+import "../components/Coupon/Coupon.css";
+import logo from "../_assets/logo2.png";
 
 export default function MyTrip() {
     let history = useHistory();
     const client = useApolloClient();
+
+    useEffect(() => {
+        if (!localStorage.access_token) {
+            history.push("/login");
+        }
+    }, []);
 
     const [idItinerary, setIdItinerary] = useState("");
 
@@ -19,7 +24,6 @@ export default function MyTrip() {
     const [deleteItinerary] = useMutation(DELETE_ITINERARY, {
         refetchQueries: [ALL_ITINERARY],
         onCompleted(data) {
-
             const { itineraries } = client.readQuery({ query: ALL_ITINERARY });
 
             const itineraryList = itineraries.map((itinerary) => {
@@ -57,9 +61,8 @@ export default function MyTrip() {
         // history.push('/')
     };
 
-
     if (!localStorage.access_token) {
-        return <Redirect to="/login" />
+        return <Redirect to="/login" />;
     }
 
     return (
@@ -72,7 +75,7 @@ export default function MyTrip() {
                         <img src={Loading} alt="loading.jpg" />
                     ) : (
                         <div>
-                            {allData.itineraries.map((el, index) => (
+                            {allData.itineraries.map((el, index) =>
                                 el.plans ? (
                                     <div className="container mt-5" key={index}>
                                         <div className="bp-card" data-clickthrough="link">
@@ -83,28 +86,45 @@ export default function MyTrip() {
                                             <div className="bp-card_content relative overflow-hidden">
                                                 <p className="text-blue-900">
                                                     {el.checkIn}
-                                                    <svg style={{ display: "inline-block", marginRight: 10, marginTop: '-4px' }} xmlns="http://www.w3.org/2000/svg" className="mt-2 h-6 w-6 text-blue-600 ml-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg
+                                                        style={{ display: "inline-block", marginRight: 10, marginTop: "-4px" }}
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className="mt-2 h-6 w-6 text-blue-600 ml-5"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                    >
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                                                     </svg>
-                                                    {el.checkOut}</p>
+                                                    {el.checkOut}
+                                                </p>
                                                 <h3 className="text-2xl font-bold">{el.title}</h3>
                                                 <ul>
                                                     <li>
-                                                        <button className="btn  rounded bg-blue-900" onClick={(e) => detailHistory(e, el._id)} >DETAIL</button>
+                                                        <button className="btn  rounded bg-blue-900" onClick={(e) => detailHistory(e, el._id)}>
+                                                            DETAIL
+                                                        </button>
                                                     </li>
                                                     <li>
-                                                        <button className="btn  rounded" onClick={(e) => deleteHandler(e, el)} >DELETE</button>
+                                                        <button className="btn  rounded" onClick={(e) => deleteHandler(e, el)}>
+                                                            DELETE
+                                                        </button>
                                                     </li>
                                                     <li>
-                                                        <small><em>provided by</em></small> BC - Destination
+                                                        <small>
+                                                            <em>provided by</em>
+                                                        </small>{" "}
+                                                        BC - Destination
                                                     </li>
                                                 </ul>
                                                 <img src={logo} alt="" className="absolute top-2  0 -right-3/4" />
                                             </div>
                                         </div>
                                     </div>
-                                ) : <div key={index}></div>
-                            ))}
+                                ) : (
+                                    <div key={index}></div>
+                                )
+                            )}
                         </div>
                     )}
                 </div>
@@ -112,12 +132,6 @@ export default function MyTrip() {
         </section>
     );
 }
-
-
-
-
-
-
 
 // {allData.itineraries.map((el, index) => (
 //     <div className="py-8 flex flex-wrap md:flex-nowrap">

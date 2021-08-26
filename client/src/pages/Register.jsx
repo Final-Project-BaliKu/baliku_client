@@ -106,12 +106,13 @@
 //     );
 // }
 
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { USER_REGISTER } from "../graphql";
-import {useMutation} from '@apollo/client' 
+import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
-export default function Register() {
+import Swal from "sweetalert2";
 
+export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -126,7 +127,7 @@ export default function Register() {
             history.push("/login");
         },
         onError(err) {
-            console.log(err);
+            Swal.fire("Email has been registered");
         },
     });
 
@@ -160,7 +161,13 @@ export default function Register() {
                                     <label className="block mb-2 text-sm font-bold text-gray-700" for="email">
                                         Email
                                     </label>
-                                    <input  onChange={(e) => setEmail(e.target.value)} className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" />
+                                    <input
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                        id="email"
+                                        type="email"
+                                        placeholder="Email"
+                                    />
                                     <label className="block mb-2 text-sm font-bold text-gray-700" for="email">
                                         Password
                                     </label>

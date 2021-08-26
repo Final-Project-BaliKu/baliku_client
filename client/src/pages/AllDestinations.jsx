@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar.jsx";
 import axios from "axios";
 import Loading from "../_assets/loading.gif";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function AllDestinations() {
     const [attraction, setAttraction] = useState("");
+
+    const history = useHistory();
+
     const getAllAttraction = async () => {
         await axios({
             method: "GET",
@@ -42,12 +45,16 @@ export default function AllDestinations() {
         });
     };
     useEffect(() => {
-        getAllAttraction();
+        if (!localStorage.access_token) {
+            history.push("/login");
+        } else {
+            getAllAttraction();
+        }
     }, []);
 
-    if(!localStorage.access_token){
-        return <Redirect to="/login" />
-    }
+    // if(!localStorage.access_token){
+    //     return <Redirect to="/login" />
+    // }
 
     return (
         <div className="bgMytrip relative overflow-hidden">
@@ -67,8 +74,8 @@ export default function AllDestinations() {
                                 return (
                                     <div key={idx} className="lg:w-1/3 sm:w-1/2 p-4">
                                         <div className="flex relative shadow-lg">
-                                            <img alt="gallery" className="rounded p-5 bg-white absolute inset-0 w-full h-full object-cover object-center" src={data.image}  />
-                                            <div className="px-8 py-10 relative z-10 w-full  bg-yellow-200  opacity-0 px-5 bg-opacity-0 hover:opacity-100  hover:bg-opacity-75 " style={{transition: '0.5s'}}>
+                                            <img alt="gallery" className="rounded p-5 bg-white absolute inset-0 w-full h-full object-cover object-center" src={data.image} />
+                                            <div className="px-8 py-10 relative z-10 w-full  bg-yellow-200  opacity-0  bg-opacity-0 hover:opacity-100  hover:bg-opacity-75 " style={{ transition: "0.5s" }}>
                                                 <h1 className="title-font text-md font-medium text-gray-900 mb-3 px-5">{data.name}</h1>
                                                 <h2 className="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1 px-5 ">{data.ranking}</h2>
                                                 <p className="leading-relaxed overflow-y-auto h-32 text-sm text-justify px-5  ">{data.description}</p>

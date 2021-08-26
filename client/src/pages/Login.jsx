@@ -4,6 +4,7 @@ import patternBali from "../_assets/catur.png";
 import { useHistory } from "react-router-dom";
 import { USER_LOGIN } from "../graphql";
 import { useMutation } from "@apollo/client";
+import Swal from "sweetalert2";
 
 export default function Login() {
     const history = useHistory();
@@ -17,7 +18,8 @@ export default function Login() {
             history.push("/");
         },
         onError(err) {
-            console.log(err);
+            // console.log(err);
+            Swal.fire(err.message);
         },
     });
 

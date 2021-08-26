@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Redirect } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 import SummaryComponents from "../components/SummaryMaterial/Index.jsx";
 import { PlansContext } from "../context/plansContext";
@@ -7,9 +7,17 @@ import { PlansContext } from "../context/plansContext";
 export default function Summary() {
     const planValue = useContext(PlansContext);
 
-    if(!localStorage.access_token){
-        return <Redirect to="/login" />
-    }
+    const history = useHistory();
+
+    // if(!localStorage.access_token){
+    //     return <Redirect to="/login" />
+    // }
+
+    useEffect(() => {
+        if (!localStorage.access_token) {
+            history.push("/login");
+        }
+    }, []);
 
     return (
         <div className="h-screen bg-blue-900 relative overflow-hidden pr-10 ">
